@@ -1,6 +1,6 @@
 GCMTemplateProject
 ==================
-[![Build Status](https://travis-ci.org/gamechanger/GCMTemplateProject].png)](https://travis-ci.org/gamechanger/GCMTemplateProject)
+[![Build Status](https://travis-ci.org/gamechanger/GCMTemplateProject.png)](https://travis-ci.org/gamechanger/GCMTemplateProject)
 
 A template project for creating public GCM* projects
 
