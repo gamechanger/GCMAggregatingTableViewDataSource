@@ -1,0 +1,11 @@
+{
+  "name": "web",
+  "active": true,
+  "events": [
+    "push",
+    "pull_request"
+  ],
+  "config": {
+    "url": "http://gcbot.herokuapp.com/hubot/github-event-watcher/events"
+  }
+}

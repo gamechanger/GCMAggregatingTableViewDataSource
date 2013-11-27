@@ -1,0 +1,20 @@
+language: objective-c
+before_install:
+- brew update
+- brew unlink xctool
+- brew install xctool
+- rvm use 1.9.3
+script: rake test:ci analyze
+cache:
+  bundler: true
+  directories:
+  - Pods
+notifications:
+  email: false
+  hipchat:
+    template:
+    - ! '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}
+      (<a href="%{build_url}">Details</a>/<a href="%{compare_url}">Change view</a>)'
+    format: html
+    rooms:
+      secure: JIabtEXGFqy86ZAKCOy3qCqZNXFO896CFEkGHz9+jKqnHp78MXqFufcgy09RCuKXP5tu2iVWtvEjHhdZa6MCezkAWTl4VHHnQIIJWCQnKlm6hqQVgWBc3cSBD6xfHClpM+OuB0HWufCRUOxdSqRxWvbTrLF3Hoqz0BIknADYutY=
