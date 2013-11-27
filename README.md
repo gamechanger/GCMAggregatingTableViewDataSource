@@ -1,5 +1,6 @@
 GCMTemplateProject
 ==================
+[![Build Status](https://travis-ci.org/gamechanger/GCMTemplateProject].png)](https://travis-ci.org/gamechanger/GCMTemplateProject)
 
 A template project for creating public GCM* projects
 
@@ -11,8 +12,10 @@ A template project for creating public GCM* projects
   * Update the Podfile to use the up-to-date project and target names.
   * Pick a gemset name (it should be unique) and update it in .ruby-gemset.
   * Change the names in the Rakefile
-* Register the project with Travis CI.
-* Configure hipchat notifications with our encrypted API key by following the instructions [here](http://about.travis-ci.org/docs/user/notifications/#HipChat-notification).
+* Configure Travis CI 
+  * Register the project with Travis CI.
+  * Configure hipchat notifications with our encrypted API key by following the instructions [here](http://about.travis-ci.org/docs/user/notifications/#HipChat-notification).
+  * Update the build status image at the top of README.md (this file).
 * Configure gcbot to handle pull requests
   * edit scripts/gc-github-global-watcher.coffee
   * create a github service hook that's pull request-aware: `curl -u &lt;your github username&gt; --data @script/webhook.json https://api.github.com/repos/gamechanger/&lt;project name&gt;/hooks`
