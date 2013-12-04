@@ -13,7 +13,7 @@ A template project for creating public GCM* projects
   * Pick a gemset name (it should be unique) and update it in .ruby-gemset.
   * Change the names in the Rakefile
 * Configure Travis CI 
-  * Register the project with Travis CI.
+  * [Register the project with Travis CI.](http://about.travis-ci.org/docs/user/getting-started/)
   * Configure hipchat notifications with our encrypted API key by following the instructions [here](http://about.travis-ci.org/docs/user/notifications/#HipChat-notification).
   * Update the build status image at the top of README.md (this file).
 * Configure gcbot to handle pull requests
