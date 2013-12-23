@@ -17,4 +17,4 @@ notifications:
       (<a href="%{build_url}">Details</a>/<a href="%{compare_url}">Change view</a>)'
     format: html
     rooms:
-      secure: JIabtEXGFqy86ZAKCOy3qCqZNXFO896CFEkGHz9+jKqnHp78MXqFufcgy09RCuKXP5tu2iVWtvEjHhdZa6MCezkAWTl4VHHnQIIJWCQnKlm6hqQVgWBc3cSBD6xfHClpM+OuB0HWufCRUOxdSqRxWvbTrLF3Hoqz0BIknADYutY=
+      secure: HGqjX2eA46R+IkY4WBbDLRc/h87CuxQNHzzDSlUMtOTtHvbXSBJg+ualNulm5YxBNiXIxnnvXPwb5LBB4JYp0LwY79ZX9HZ8fu3oMwooXGnkZU0mPxYx4JEO96aDgIqUfshXPf+xzfBc6xLVkq7ieSsqDF7z9tkxPNLGKAS/H1U=
