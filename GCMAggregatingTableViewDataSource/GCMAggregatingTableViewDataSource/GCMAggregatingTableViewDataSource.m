@@ -1,14 +1,14 @@
 //
-//  GCMTemplateProject.m
-//  GCMTemplateProject
+//  GCMAggregatingTableViewDataSource.m
+//  GCMAggregatingTableViewDataSource
 //
 //  Created by Phil Sarin on 11/27/13.
 //  Copyright (c) 2013 GameChanger. All rights reserved.
 //
 
-#import "GCMTemplateProject.h"
+#import "GCMAggregatingTableViewDataSource.h"
 
-@implementation GCMTemplateProject
+@implementation GCMAggregatingTableViewDataSource
 
 + (NSInteger)theNumberOne {
   return 1;

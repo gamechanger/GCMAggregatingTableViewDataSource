@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "62335DE318463E570053BD19"
-               BuildableName = "libGCMTemplateProject.a"
-               BlueprintName = "GCMTemplateProject"
-               ReferencedContainer = "container:GCMTemplateProject.xcodeproj">
+               BuildableName = "libGCMAggregatingTableViewDataSource.a"
+               BlueprintName = "GCMAggregatingTableViewDataSource"
+               ReferencedContainer = "container:GCMAggregatingTableViewDataSource.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "62335E1018463F1D0053BD19"
-               BuildableName = "GCMTemplateProjectTests.octest"
-               BlueprintName = "GCMTemplateProjectTests"
-               ReferencedContainer = "container:GCMTemplateProject.xcodeproj">
+               BuildableName = "GCMAggregatingTableViewDataSourceTests.octest"
+               BlueprintName = "GCMAggregatingTableViewDataSourceTests"
+               ReferencedContainer = "container:GCMAggregatingTableViewDataSource.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

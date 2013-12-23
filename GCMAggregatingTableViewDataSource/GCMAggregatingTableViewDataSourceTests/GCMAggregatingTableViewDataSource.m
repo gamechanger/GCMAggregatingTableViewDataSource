@@ -1,11 +1,11 @@
 #import <Kiwi.h>
-#import "GCMTemplateProject.h"
+#import "GCMAggregatingTableViewDataSource.h"
 
-SPEC_BEGIN(GCMTemplateProjectTests)
+SPEC_BEGIN(GCMAggregatingTableViewDataSourceTests)
 
 describe(@"a kiwi spec", ^{
   it(@"works", ^{
-    [[theValue([GCMTemplateProject theNumberOne]) should] equal:theValue(1)];
+    [[theValue([GCMAggregatingTableViewDataSource theNumberOne]) should] equal:theValue(1)];
   });
 });
 

@@ -1,14 +1,14 @@
-GCMTemplateProject
+GCMAggregatingTableViewDataSource
 ==================
-[![Build Status](https://travis-ci.org/gamechanger/GCMTemplateProject.png)](https://travis-ci.org/gamechanger/GCMTemplateProject)
+[![Build Status](https://travis-ci.org/gamechanger/GCMAggregatingTableViewDataSource.png)](https://travis-ci.org/gamechanger/GCMAggregatingTableViewDataSource)
 
 A template project for creating public GCM* projects
 
 * Rename the project, targets, and folders
   * [How to duplicate a project](http://stackoverflow.com/questions/17744319/duplicate-and-rename-xcode-project-associated-folders)
   * Update script/template.podspec.erb
-  * Regenerate GCMTemplateProject.podspec. `ruby script/generate-podspec.rb 0.1.0 > GCMTemplateProject.podspec`
-  * Rename GCMTemplateProject.podspec to match the name of your new repository.
+  * Regenerate GCMAggregatingTableViewDataSource.podspec. `ruby script/generate-podspec.rb 0.1.0 > GCMAggregatingTableViewDataSource.podspec`
+  * Rename GCMAggregatingTableViewDataSource.podspec to match the name of your new repository.
   * Update the Podfile to use the up-to-date project and target names.
   * Pick a gemset name (it should be unique) and update it in .ruby-gemset.
   * Change the names in the Rakefile
