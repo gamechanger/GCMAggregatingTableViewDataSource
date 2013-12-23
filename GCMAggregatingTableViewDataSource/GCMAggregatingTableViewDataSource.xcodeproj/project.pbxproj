@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		62335DE818463E570053BD19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62335DE718463E570053BD19 /* Foundation.framework */; };
-		62335DED18463E570053BD19 /* GCMAggregatingTableViewDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62335DEC18463E570053BD19 /* GCMAggregatingTableViewDataSource.h */; };
-		62335DEF18463E570053BD19 /* GCMAggregatingTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 62335DEE18463E570053BD19 /* GCMAggregatingTableViewDataSource.m */; };
 		62335E1318463F1D0053BD19 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62335E1218463F1D0053BD19 /* SenTestingKit.framework */; };
 		62335E1418463F1D0053BD19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62335DE718463E570053BD19 /* Foundation.framework */; };
 		62335E1518463F1D0053BD19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62335DF818463E570053BD19 /* UIKit.framework */; };
 		62335E1B18463F1D0053BD19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62335E1918463F1D0053BD19 /* InfoPlist.strings */; };
-		62335E1D18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62335E1C18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests.m */; };
 		62335E24184642460053BD19 /* libGCMAggregatingTableViewDataSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62335DE418463E570053BD19 /* libGCMAggregatingTableViewDataSource.a */; };
+		AB8EB94E1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB94B1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.m */; };
+		AB8EB94F1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB94D1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m */; };
+		AB8EB9521868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB9501868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m */; };
+		AB8EB9531868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB9511868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m */; };
 		E0A1BA4F9C55405C9E2E5E9F /* libPods-GCMAggregatingTableViewDataSourceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1019A5D92F994DF59D182BEE /* libPods-GCMAggregatingTableViewDataSourceTests.a */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +37,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				62335DED18463E570053BD19 /* GCMAggregatingTableViewDataSource.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,17 +47,20 @@
 		62335DE418463E570053BD19 /* libGCMAggregatingTableViewDataSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGCMAggregatingTableViewDataSource.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62335DE718463E570053BD19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62335DEB18463E570053BD19 /* GCMAggregatingTableViewDataSource-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCMAggregatingTableViewDataSource-Prefix.pch"; sourceTree = "<group>"; };
-		62335DEC18463E570053BD19 /* GCMAggregatingTableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCMAggregatingTableViewDataSource.h; sourceTree = "<group>"; };
-		62335DEE18463E570053BD19 /* GCMAggregatingTableViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatingTableViewDataSource.m; sourceTree = "<group>"; };
 		62335DF518463E570053BD19 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		62335DF818463E570053BD19 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		62335E1118463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCMAggregatingTableViewDataSourceTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62335E1218463F1D0053BD19 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		62335E1818463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GCMAggregatingTableViewDataSourceTests-Info.plist"; sourceTree = "<group>"; };
 		62335E1A18463F1D0053BD19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		62335E1C18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatingTableViewDataSourceTests.m; sourceTree = "<group>"; };
 		62335E1E18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCMAggregatingTableViewDataSourceTests-Prefix.pch"; sourceTree = "<group>"; };
 		A1921FD978ED4464BDE43AAF /* Pods-GCMAggregatingTableViewDataSourceTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GCMAggregatingTableViewDataSourceTests.xcconfig"; path = "../Pods/Pods-GCMAggregatingTableViewDataSourceTests.xcconfig"; sourceTree = "<group>"; };
+		AB8EB94A1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMAggregatedTableViewWrapper.h; sourceTree = "<group>"; };
+		AB8EB94B1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatedTableViewWrapper.m; sourceTree = "<group>"; };
+		AB8EB94C1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMAggregatingTableViewDataSource.h; sourceTree = "<group>"; };
+		AB8EB94D1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatingTableViewDataSource.m; sourceTree = "<group>"; };
+		AB8EB9501868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatedTableViewWrapperTests.m; sourceTree = "<group>"; };
+		AB8EB9511868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatingTableViewDataSourceTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +96,9 @@
 				62335DE518463E570053BD19 /* Products */,
 				A1921FD978ED4464BDE43AAF /* Pods-GCMAggregatingTableViewDataSourceTests.xcconfig */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		62335DE518463E570053BD19 /* Products */ = {
 			isa = PBXGroup;
@@ -119,8 +124,10 @@
 		62335DE918463E570053BD19 /* GCMAggregatingTableViewDataSource */ = {
 			isa = PBXGroup;
 			children = (
-				62335DEC18463E570053BD19 /* GCMAggregatingTableViewDataSource.h */,
-				62335DEE18463E570053BD19 /* GCMAggregatingTableViewDataSource.m */,
+				AB8EB94A1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.h */,
+				AB8EB94B1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.m */,
+				AB8EB94C1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.h */,
+				AB8EB94D1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m */,
 				62335DEA18463E570053BD19 /* Supporting Files */,
 			);
 			path = GCMAggregatingTableViewDataSource;
@@ -137,7 +144,8 @@
 		62335E1618463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests */ = {
 			isa = PBXGroup;
 			children = (
-				62335E1C18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests.m */,
+				AB8EB9501868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m */,
+				AB8EB9511868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m */,
 				62335E1718463F1D0053BD19 /* Supporting Files */,
 			);
 			path = GCMAggregatingTableViewDataSourceTests;
@@ -274,7 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62335DEF18463E570053BD19 /* GCMAggregatingTableViewDataSource.m in Sources */,
+				AB8EB94E1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.m in Sources */,
+				AB8EB94F1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +291,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62335E1D18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests.m in Sources */,
+				AB8EB9521868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m in Sources */,
+				AB8EB9531868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
