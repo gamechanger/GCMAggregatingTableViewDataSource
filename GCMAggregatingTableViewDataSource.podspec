@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "GCMAggregatingTableViewDataSource"
-  s.version      = "<%= version %>"
+  s.version      = ""
   s.summary      = "A template project."
   s.homepage     = "https://github.com/gamechanger/GCMAggregatingTableViewDataSource"
   s.author       = { "Tom Leach" => "tom.leach@gamechanger.io" }
-  s.source       = { :git => "https://github.com/gamechanger/GCMAggregatingTableViewDataSource.git", :tag => "<%= version %>" }
+  s.source       = { :git => "https://github.com/gamechanger/GCMAggregatingTableViewDataSource.git", :tag => "" }
   s.source_files = "GCMAggregatingTableViewDataSource/GCMAggregatingTableViewDataSource/*.{h,m}"
   s.license = { :type => 'MIT', :type => 'LICENSE' }
   s.requires_arc = true

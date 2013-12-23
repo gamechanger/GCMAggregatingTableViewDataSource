@@ -16,8 +16,8 @@ fi
 
 set -e
 pushd `dirname "${BASH_SOURCE[0]}"`
-ruby generate-podspec.rb $1 > ../GCMTemplateProject.podspec
-git add ../GCMTemplateProject.podspec
+ruby generate-podspec.rb $1 > ../GCMAggregatingTableViewDataSource.podspec
+git add ../GCMAggregatingTableViewDataSource.podspec
 git commit -m "Update podspec" || true
 git push origin master
 popd
@@ -25,4 +25,4 @@ popd
 git tag -a $1 -m "Create tag"
 git push origin $1
 
-pod push gc_specs_mirror GCMTemplateProject.podspec
+pod push gc_specs_mirror GCMAggregatingTableViewDataSource.podspec

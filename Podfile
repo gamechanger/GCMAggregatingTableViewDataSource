@@ -1,9 +1,9 @@
 platform :ios, "6.0"
-workspace 'GCMTemplateProject'
-xcodeproj 'GCMTemplateProject/GCMTemplateProject.xcodeproj'
+workspace 'GCMAggregatingTableViewDataSource'
+xcodeproj 'GCMAggregatingTableViewDataSource/GCMAggregatingTableViewDataSource.xcodeproj'
 
-target :GCMTemplateProjectTests do
+target :GCMAggregatingTableViewDataSourceTests do
   pod 'Kiwi', '2.2.0'
 end
 
-podspec :path => 'GCMTemplateProject.podspec'
+podspec :path => 'GCMAggregatingTableViewDataSource.podspec'
