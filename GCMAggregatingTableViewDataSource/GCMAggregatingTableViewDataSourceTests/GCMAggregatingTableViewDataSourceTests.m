@@ -950,6 +950,9 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
         it(@"squashes call to third child", ^{
           [aggregatingDataSource tableView:tableView didUnhighlightRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:5]];
         });
+        it(@"squashes call to NSNotFound section", ^{
+          [aggregatingDataSource tableView:tableView didUnhighlightRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:NSNotFound]];
+        });
       });
     });
   });
