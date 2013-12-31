@@ -68,6 +68,9 @@
                     performBlock:(id (^)(UITableView *wrappedTableView,
                                          id<UITableViewDataSource> childDataSource,
                                          NSInteger relativeSection))block {
+  if ( section == NSNotFound ) {
+    return nil;
+  }
   NSInteger offset = 0;
   for (id<UITableViewDataSource> childDataSource in self.childDataSources) {
     NSInteger dataSourceSectionCount = [childDataSource
