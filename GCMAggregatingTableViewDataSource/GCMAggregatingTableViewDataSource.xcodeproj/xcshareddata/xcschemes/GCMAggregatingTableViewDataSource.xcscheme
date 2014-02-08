@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "62335E1018463F1D0053BD19"
-               BuildableName = "GCMAggregatingTableViewDataSourceTests.octest"
+               BuildableName = "GCMAggregatingTableViewDataSourceTests.xctest"
                BlueprintName = "GCMAggregatingTableViewDataSourceTests"
                ReferencedContainer = "container:GCMAggregatingTableViewDataSource.xcodeproj">
             </BuildableReference>
