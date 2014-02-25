@@ -819,16 +819,24 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
           cell = [UITableViewCell mock];
         });
         it(@"forwards to the first child", ^{
-          [[childDataSourceObjA should] receive:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:) withArguments:any(),cell,[NSIndexPath indexPathForItem:3 inSection:1]];
-          [aggregatingDataSource tableView:tableView didEndDisplayingCell:cell forRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:1]];
+          [childDataSourceObjA stub:@selector(tableView:willDisplayCell:forRowAtIndexPath:)];
+          [aggregatingDataSource tableView:tableView willDisplayCell:cell forRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];
+          
+          KWCaptureSpy *spy = [childDataSourceObjA captureArgument:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:) atIndex:2];
+          [aggregatingDataSource tableView:tableView didEndDisplayingCell:cell forRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];
+          NSIndexPath *ip = (NSIndexPath *)spy.argument;
+          [[ip should] equal:[NSIndexPath indexPathForRow:3 inSection:1]];
         });
         it(@"forwards to the second child", ^{
-          [[childDataSourceObjB should] receive:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:) withArguments:any(),cell,[NSIndexPath indexPathForItem:3 inSection:0]];
+          [childDataSourceObjB stub:@selector(tableView:willDisplayCell:forRowAtIndexPath:)];
+          [aggregatingDataSource tableView:tableView willDisplayCell:cell forRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:2]];
+          
+          KWCaptureSpy *spy = [childDataSourceObjB captureArgument:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:) atIndex:2];
           [aggregatingDataSource tableView:tableView didEndDisplayingCell:cell forRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:2]];
+          NSIndexPath *ip = (NSIndexPath *)spy.argument;
+          [[ip should] equal:[NSIndexPath indexPathForRow:3 inSection:0]];
         });
-        it(@"squashes call to third child", ^{
-          [aggregatingDataSource tableView:tableView didEndDisplayingCell:cell forRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:5]];
-        });
+ 
       });
       context(@"tableView:didEndDisplayingHeaderView:forSection:", ^{
         __block UIView *view;
