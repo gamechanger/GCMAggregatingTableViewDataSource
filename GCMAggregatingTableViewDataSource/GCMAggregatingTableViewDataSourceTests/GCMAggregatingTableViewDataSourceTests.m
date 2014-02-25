@@ -844,15 +844,20 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
           view = [UIView mock];
         });
         it(@"forwards to the first child", ^{
-          [[childDataSourceObjA should] receive:@selector(tableView:didEndDisplayingHeaderView:forSection:) withArguments:any(),view,theValue(1)];
+          [childDataSourceObjA stub:@selector(tableView:willDisplayHeaderView:forSection:)];
+          [aggregatingDataSource tableView:tableView willDisplayHeaderView:view forSection:1];
+          
+          KWCaptureSpy *spy = [childDataSourceObjA captureArgument:@selector(tableView:didEndDisplayingHeaderView:forSection:) atIndex:2];
           [aggregatingDataSource tableView:tableView didEndDisplayingHeaderView:view forSection:1];
+          [[spy.argument should] equal:@1];
         });
         it(@"forwards to the second child", ^{
-          [[childDataSourceObjB should] receive:@selector(tableView:didEndDisplayingHeaderView:forSection:) withArguments:any(),view,theValue(0)];
+          [childDataSourceObjB stub:@selector(tableView:willDisplayHeaderView:forSection:)];
+          [aggregatingDataSource tableView:tableView willDisplayHeaderView:view forSection:2];
+          
+          KWCaptureSpy *spy = [childDataSourceObjB captureArgument:@selector(tableView:didEndDisplayingHeaderView:forSection:) atIndex:2];
           [aggregatingDataSource tableView:tableView didEndDisplayingHeaderView:view forSection:2];
-        });
-        it(@"squashes call to third child", ^{
-          [aggregatingDataSource tableView:tableView didEndDisplayingHeaderView:view forSection:5];
+          [[spy.argument should] equal:@0];
         });
       });
       context(@"tableView:didEndDisplayingFooterView:forSection:", ^{
@@ -861,15 +866,20 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
           view = [UIView mock];
         });
         it(@"forwards to the first child", ^{
-          [[childDataSourceObjA should] receive:@selector(tableView:didEndDisplayingFooterView:forSection:) withArguments:any(),view,theValue(1)];
+          [childDataSourceObjA stub:@selector(tableView:willDisplayFooterView:forSection:)];
+          [aggregatingDataSource tableView:tableView willDisplayFooterView:view forSection:1];
+          
+          KWCaptureSpy *spy = [childDataSourceObjA captureArgument:@selector(tableView:didEndDisplayingFooterView:forSection:) atIndex:2];
           [aggregatingDataSource tableView:tableView didEndDisplayingFooterView:view forSection:1];
+          [[spy.argument should] equal:@1];
         });
         it(@"forwards to the second child", ^{
-          [[childDataSourceObjB should] receive:@selector(tableView:didEndDisplayingFooterView:forSection:) withArguments:any(),view,theValue(0)];
+          [childDataSourceObjB stub:@selector(tableView:willDisplayFooterView:forSection:)];
+          [aggregatingDataSource tableView:tableView willDisplayFooterView:view forSection:2];
+          
+          KWCaptureSpy *spy = [childDataSourceObjB captureArgument:@selector(tableView:didEndDisplayingFooterView:forSection:) atIndex:2];
           [aggregatingDataSource tableView:tableView didEndDisplayingFooterView:view forSection:2];
-        });
-        it(@"squashes call to third child", ^{
-          [aggregatingDataSource tableView:tableView didEndDisplayingFooterView:view forSection:5];
+          [[spy.argument should] equal:@0];
         });
       });
       context(@"tableView:shouldShowMenuForRowAtIndexPath:", ^{
