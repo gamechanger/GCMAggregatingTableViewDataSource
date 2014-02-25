@@ -9,9 +9,13 @@
 #import "GCMAggregatingTableViewDataSource.h"
 #import "GCMAggregatedTableViewWrapper.h"
 
+static NSString *const kGCTableViewMapDataSourceKey = @"dataSourceKey";
+static NSString *const kGCTableViewMapIndexKey = @"indexKey";
+
 @interface GCMAggregatingTableViewDataSource ()
 @property (nonatomic, strong) GCMAggregatedTableViewWrapper *tableViewWrapper;
 @property (nonatomic, strong) NSMutableOrderedSet *childDataSources;
+@property (nonatomic, strong) NSMapTable *tableViewMap;
 @end
 
 @implementation GCMAggregatingTableViewDataSource
@@ -30,6 +34,14 @@
     _tableViewWrapper = [GCMAggregatedTableViewWrapper wrapper];
   }
   return _tableViewWrapper;
+}
+
+- (NSMapTable *)tableViewMap {
+  if ( ! _tableViewMap ) {
+    _tableViewMap = [NSMapTable mapTableWithKeyOptions:NSMapTableObjectPointerPersonality
+                                          valueOptions:NSMapTableObjectPointerPersonality];
+  }
+  return _tableViewMap;
 }
 
 #pragma mark wrapping
@@ -349,48 +361,33 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self withDelegateForTableView:tableView
-                       indexPath:indexPath
-                    performBlock:^id(UITableView *wrappedTableView,
-                                     id<UITableViewDelegate> childDelegate,
-                                     NSIndexPath *relativeIndexPath) {
-                      if ([childDelegate respondsToSelector:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:)]) {
-                        [childDelegate tableView:wrappedTableView
-                            didEndDisplayingCell:cell
-                               forRowAtIndexPath:relativeIndexPath];
-                      }
-                      return nil;
-                    }];
+  id<UITableViewDataSource, UITableViewDelegate> childDataSource = [self.tableViewMap objectForKey:cell][kGCTableViewMapDataSourceKey];
+  NSAssert(childDataSource != nil, @"No entry for cell in table view map");
+  NSIndexPath *ip = [self.tableViewMap objectForKey:cell][kGCTableViewMapIndexKey];
+  if ( [childDataSource respondsToSelector:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:)] ) {
+    [childDataSource tableView:tableView didEndDisplayingCell:cell forRowAtIndexPath:ip];
+  }
+  [self.tableViewMap removeObjectForKey:cell];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingFooterView:(UIView *)view forSection:(NSInteger)section {
-  [self withDelegateForTableView:tableView
-                         section:section
-                    performBlock:^id(UITableView *wrappedTableView,
-                                     id<UITableViewDelegate> childDelegate,
-                                     NSInteger relativeSection) {
-                      if ([childDelegate respondsToSelector:@selector(tableView:didEndDisplayingFooterView:forSection:)]) {
-                        [childDelegate tableView:wrappedTableView
-                      didEndDisplayingFooterView:view
-                                      forSection:relativeSection];
-                      }
-                      return nil;
-                    }];
+  id<UITableViewDataSource, UITableViewDelegate> childDataSource = [self.tableViewMap objectForKey:view][kGCTableViewMapDataSourceKey];
+  NSAssert(childDataSource != nil, @"No entry for view in table view map");
+  NSInteger relativeSection = [[self.tableViewMap objectForKey:view][kGCTableViewMapIndexKey] integerValue];
+  if ( [childDataSource respondsToSelector:@selector(tableView:didEndDisplayingFooterView:forSection:)] ) {
+    [childDataSource tableView:tableView didEndDisplayingFooterView:view forSection:relativeSection];
+  }
+  [self.tableViewMap removeObjectForKey:view];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
-  [self withDelegateForTableView:tableView
-                         section:section
-                    performBlock:^id(UITableView *wrappedTableView,
-                                     id<UITableViewDelegate> childDelegate,
-                                     NSInteger relativeSection) {
-                      if ([childDelegate respondsToSelector:@selector(tableView:didEndDisplayingHeaderView:forSection:)]) {
-                        [childDelegate tableView:wrappedTableView
-                      didEndDisplayingHeaderView:view
-                                      forSection:relativeSection];
-                      }
-                      return nil;
-                    }];
+  id<UITableViewDataSource, UITableViewDelegate> childDataSource = [self.tableViewMap objectForKey:view][kGCTableViewMapDataSourceKey];
+  NSAssert(childDataSource != nil, @"No entry for view in table view map");
+  NSInteger relativeSection = [[self.tableViewMap objectForKey:view][kGCTableViewMapIndexKey] integerValue];
+  if ( [childDataSource respondsToSelector:@selector(tableView:didEndDisplayingHeaderView:forSection:)] ) {
+    [childDataSource tableView:tableView didEndDisplayingHeaderView:view forSection:relativeSection];
+  }
+  [self.tableViewMap removeObjectForKey:view];
 }
 
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -618,7 +615,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  __weak GCMAggregatingTableViewDataSource *wSelf = self;
   [self withDelegateForTableView:tableView indexPath:indexPath performBlock:^id(UITableView *wrappedTableView, id<UITableViewDelegate> childDelegate, NSIndexPath *relativeIndexPath) {
+    [wSelf.tableViewMap setObject:@{kGCTableViewMapDataSourceKey : childDelegate,
+                                    kGCTableViewMapIndexKey : relativeIndexPath}
+                           forKey:cell];
+    
     if ([childDelegate respondsToSelector:@selector(tableView:willDisplayCell:forRowAtIndexPath:)]) {
       [childDelegate tableView:wrappedTableView willDisplayCell:cell forRowAtIndexPath:relativeIndexPath];
     }
@@ -627,7 +629,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
+  __weak GCMAggregatingTableViewDataSource *wSelf = self;
   [self withDelegateForTableView:tableView section:section performBlock:^id(UITableView *wrappedTableView, id<UITableViewDelegate> childDelegate, NSInteger relativeSection) {
+    [wSelf.tableViewMap setObject:@{kGCTableViewMapDataSourceKey : childDelegate,
+                                    kGCTableViewMapIndexKey : @(relativeSection)}
+                           forKey:view];
     if ([childDelegate respondsToSelector:@selector(tableView:willDisplayFooterView:forSection:)]) {
       [childDelegate tableView:wrappedTableView willDisplayFooterView:view forSection:relativeSection];
     }
@@ -636,7 +642,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+  __weak GCMAggregatingTableViewDataSource *wSelf = self;
   [self withDelegateForTableView:tableView section:section performBlock:^id(UITableView *wrappedTableView, id<UITableViewDelegate> childDelegate, NSInteger relativeSection) {
+    [wSelf.tableViewMap setObject:@{kGCTableViewMapDataSourceKey : childDelegate,
+                                    kGCTableViewMapIndexKey : @(relativeSection)}
+                           forKey:view];
     if ([childDelegate respondsToSelector:@selector(tableView:willDisplayHeaderView:forSection:)]) {
       [childDelegate tableView:wrappedTableView willDisplayHeaderView:view forSection:relativeSection];
     }
