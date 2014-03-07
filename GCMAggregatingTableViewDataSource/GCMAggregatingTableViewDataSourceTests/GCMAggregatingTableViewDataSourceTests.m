@@ -227,25 +227,6 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
         [aggregatingDataSource tableView:tableView targetIndexPathForMoveFromRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] toProposedIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
       }) should] raise];
     });
-    it(@"raises an exception if tableView:didEndDisplayingCell:forRowAtIndexPath: is called", ^{
-      [[theBlock(^{
-        [aggregatingDataSource tableView:tableView didEndDisplayingCell:[UITableViewCell mock]forRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-      }) should] raise];
-    });
-    it(@"raises an exception if tableView:didEndDisplayingHeaderView:forSection: is called", ^{
-      [[theBlock(^{
-        [aggregatingDataSource tableView:tableView
-              didEndDisplayingHeaderView:[UITableViewHeaderFooterView mock]
-                              forSection:0];
-      }) should] raise];
-    });
-    it(@"raises an exception if tableView:didEndDisplayingFooterView:forSection: is called", ^{
-      [[theBlock(^{
-        [aggregatingDataSource tableView:tableView
-              didEndDisplayingFooterView:[UITableViewHeaderFooterView mock]
-                              forSection:0];
-      }) should] raise];
-    });
     it(@"raises an exception if tableView:shouldShowMenuForRowAtIndexPath: is called", ^{
       [[theBlock(^{
         [aggregatingDataSource tableView:tableView shouldShowMenuForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
