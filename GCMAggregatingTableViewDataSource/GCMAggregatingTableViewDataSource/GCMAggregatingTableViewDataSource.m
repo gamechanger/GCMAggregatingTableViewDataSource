@@ -13,6 +13,12 @@
 static NSString *const kGCTableViewMapDataSourceKey = @"dataSourceKey";
 static NSString *const kGCTableViewMapIndexKey = @"indexKey";
 
+// Configure Logging Macros
+#define DBG(...) DDLogVerbose(@"DBG: %@", [NSString stringWithFormat: __VA_ARGS__])
+#define INFO(...) DDLogInfo(@"INFO: %@", [NSString stringWithFormat: __VA_ARGS__])
+#define WARN(...) DDLogWarn(@"WARN: %@", [NSString stringWithFormat: __VA_ARGS__])
+#define ERROR(...) DDLogError(@"ERROR: %@", [NSString stringWithFormat: __VA_ARGS__])
+
 int ddLogLevel = LOG_LEVEL_WARN;
 
 @interface GCMAggregatingTableViewDataSource ()

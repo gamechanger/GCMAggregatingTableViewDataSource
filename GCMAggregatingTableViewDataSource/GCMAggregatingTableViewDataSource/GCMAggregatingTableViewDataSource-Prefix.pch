@@ -7,11 +7,3 @@
 #ifdef __OBJC__
   #import <Foundation/Foundation.h>
 #endif
-
-// Configure Logging Macros
-#define DBG(...) DDLogVerbose(@"DBG: %@", [NSString stringWithFormat: __VA_ARGS__])
-#define INFO(...) DDLogInfo(@"INFO: %@", [NSString stringWithFormat: __VA_ARGS__])
-#define WARN(...) DDLogWarn(@"WARN: %@", [NSString stringWithFormat: __VA_ARGS__])
-#define ERROR(...) DDLogError(@"ERROR: %@", [NSString stringWithFormat: __VA_ARGS__])
-
-
