@@ -16,7 +16,6 @@
 		AB8EB94F1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB94D1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m */; };
 		AB8EB9521868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB9501868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m */; };
 		AB8EB9531868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB9511868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m */; };
-		AEFD0FAB9B784528A4145E2B /* libPods-GCMAggregatingTableViewDataSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E772F5C74EC14E0E9E7F6CE4 /* libPods-GCMAggregatingTableViewDataSource.a */; };
 		E0A1BA4F9C55405C9E2E5E9F /* libPods-GCMAggregatingTableViewDataSourceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1019A5D92F994DF59D182BEE /* libPods-GCMAggregatingTableViewDataSourceTests.a */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		62335E1818463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GCMAggregatingTableViewDataSourceTests-Info.plist"; sourceTree = "<group>"; };
 		62335E1A18463F1D0053BD19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62335E1E18463F1D0053BD19 /* GCMAggregatingTableViewDataSourceTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCMAggregatingTableViewDataSourceTests-Prefix.pch"; sourceTree = "<group>"; };
-		7BF18B14933D46D183497EA1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A1921FD978ED4464BDE43AAF /* Pods-GCMAggregatingTableViewDataSourceTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GCMAggregatingTableViewDataSourceTests.xcconfig"; path = "../Pods/Pods-GCMAggregatingTableViewDataSourceTests.xcconfig"; sourceTree = "<group>"; };
 		AB8EB94A1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMAggregatedTableViewWrapper.h; sourceTree = "<group>"; };
 		AB8EB94B1868ABC200A3F6B6 /* GCMAggregatedTableViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatedTableViewWrapper.m; sourceTree = "<group>"; };
@@ -61,8 +59,6 @@
 		AB8EB94D1868ABC200A3F6B6 /* GCMAggregatingTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatingTableViewDataSource.m; sourceTree = "<group>"; };
 		AB8EB9501868ABDA00A3F6B6 /* GCMAggregatedTableViewWrapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatedTableViewWrapperTests.m; sourceTree = "<group>"; };
 		AB8EB9511868ABDA00A3F6B6 /* GCMAggregatingTableViewDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMAggregatingTableViewDataSourceTests.m; sourceTree = "<group>"; };
-		C136CB552DB24EE78A976CB6 /* Pods-GCMAggregatingTableViewDataSource.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GCMAggregatingTableViewDataSource.xcconfig"; path = "../Pods/Pods-GCMAggregatingTableViewDataSource.xcconfig"; sourceTree = "<group>"; };
-		E772F5C74EC14E0E9E7F6CE4 /* libPods-GCMAggregatingTableViewDataSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GCMAggregatingTableViewDataSource.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +67,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62335DE818463E570053BD19 /* Foundation.framework in Frameworks */,
-				AEFD0FAB9B784528A4145E2B /* libPods-GCMAggregatingTableViewDataSource.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +92,6 @@
 				62335DE618463E570053BD19 /* Frameworks */,
 				62335DE518463E570053BD19 /* Products */,
 				A1921FD978ED4464BDE43AAF /* Pods-GCMAggregatingTableViewDataSourceTests.xcconfig */,
-				C136CB552DB24EE78A976CB6 /* Pods-GCMAggregatingTableViewDataSource.xcconfig */,
-				7BF18B14933D46D183497EA1 /* Pods.xcconfig */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -120,7 +113,6 @@
 				62335DF518463E570053BD19 /* XCTest.framework */,
 				62335DF818463E570053BD19 /* UIKit.framework */,
 				1019A5D92F994DF59D182BEE /* libPods-GCMAggregatingTableViewDataSourceTests.a */,
-				E772F5C74EC14E0E9E7F6CE4 /* libPods-GCMAggregatingTableViewDataSource.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,11 +164,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62335E0718463E570053BD19 /* Build configuration list for PBXNativeTarget "GCMAggregatingTableViewDataSource" */;
 			buildPhases = (
-				C368E903C4574641BF13D5B9 /* Check Pods Manifest.lock */,
 				62335DE018463E570053BD19 /* Sources */,
 				62335DE118463E570053BD19 /* Frameworks */,
 				62335DE218463E570053BD19 /* CopyFiles */,
-				C5B0FF4891CB4D3AB6BB3C07 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,36 +269,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C368E903C4574641BF13D5B9 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C5B0FF4891CB4D3AB6BB3C07 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -428,7 +388,6 @@
 		};
 		62335E0818463E570053BD19 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BF18B14933D46D183497EA1 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/GCMAggregatingTableViewDataSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -441,7 +400,6 @@
 		};
 		62335E0918463E570053BD19 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BF18B14933D46D183497EA1 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/GCMAggregatingTableViewDataSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
