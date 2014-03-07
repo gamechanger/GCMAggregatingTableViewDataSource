@@ -8,18 +8,9 @@
 
 #import "GCMAggregatingTableViewDataSource.h"
 #import "GCMAggregatedTableViewWrapper.h"
-#import "DDLog.h"
 
 static NSString *const kGCTableViewMapDataSourceKey = @"dataSourceKey";
 static NSString *const kGCTableViewMapIndexKey = @"indexKey";
-
-// Configure Logging Macros
-#define DBG(...) DDLogVerbose(@"DBG: %@", [NSString stringWithFormat: __VA_ARGS__])
-#define INFO(...) DDLogInfo(@"INFO: %@", [NSString stringWithFormat: __VA_ARGS__])
-#define WARN(...) DDLogWarn(@"WARN: %@", [NSString stringWithFormat: __VA_ARGS__])
-#define ERROR(...) DDLogError(@"ERROR: %@", [NSString stringWithFormat: __VA_ARGS__])
-
-int ddLogLevel = LOG_LEVEL_WARN;
 
 @interface GCMAggregatingTableViewDataSource ()
 @property (nonatomic, strong) GCMAggregatedTableViewWrapper *tableViewWrapper;
@@ -372,7 +363,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   id<UITableViewDataSource, UITableViewDelegate> childDataSource = [self.tableViewMap objectForKey:cell][kGCTableViewMapDataSourceKey];
   if ( ! childDataSource ) {
-    WARN(@"No entry for cell in table view map");
+    NSLog(@"No entry for cell in table view map");
   }
   NSIndexPath *ip = [self.tableViewMap objectForKey:cell][kGCTableViewMapIndexKey];
   if ( [childDataSource respondsToSelector:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:)] ) {
@@ -384,7 +375,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didEndDisplayingFooterView:(UIView *)view forSection:(NSInteger)section {
   id<UITableViewDataSource, UITableViewDelegate> childDataSource = [self.tableViewMap objectForKey:view][kGCTableViewMapDataSourceKey];
   if ( ! childDataSource ) {
-    WARN(@"No entry for view in table view map");
+    NSLog(@"No entry for view in table view map");
   }
   NSInteger relativeSection = [[self.tableViewMap objectForKey:view][kGCTableViewMapIndexKey] integerValue];
   if ( [childDataSource respondsToSelector:@selector(tableView:didEndDisplayingFooterView:forSection:)] ) {
@@ -396,7 +387,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
   id<UITableViewDataSource, UITableViewDelegate> childDataSource = [self.tableViewMap objectForKey:view][kGCTableViewMapDataSourceKey];
   if ( ! childDataSource ) {
-    WARN(@"No entry for view in table view map");
+    NSLog(@"No entry for view in table view map");
   }
   NSInteger relativeSection = [[self.tableViewMap objectForKey:view][kGCTableViewMapIndexKey] integerValue];
   if ( [childDataSource respondsToSelector:@selector(tableView:didEndDisplayingHeaderView:forSection:)] ) {
