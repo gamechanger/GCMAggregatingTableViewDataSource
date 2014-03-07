@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
   s.license = { :type => 'MIT', :type => 'LICENSE' }
   s.requires_arc = true
   s.ios.deployment_target = '6.0'
+  s.dependency 'CocoaLumberjack', '1.7.0'
 end
