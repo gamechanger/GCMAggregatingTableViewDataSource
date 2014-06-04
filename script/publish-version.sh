@@ -25,5 +25,4 @@ popd
 git tag -a $1 -m "Create tag"
 git push origin $1
 
-pod push gcspecs GCMAggregatingTableViewDataSource.podspec
-pod push gc_specs_mirror GCMAggregatingTableViewDataSource.podspec
+pod trunk push GCMAggregatingTableViewDataSource.podspec
