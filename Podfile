@@ -3,7 +3,7 @@ workspace 'GCMAggregatingTableViewDataSource'
 xcodeproj 'GCMAggregatingTableViewDataSource/GCMAggregatingTableViewDataSource.xcodeproj'
 
 target :GCMAggregatingTableViewDataSourceTests do
-  pod 'Kiwi/XCTest', '2.2.3'
+  pod 'Kiwi', '2.3.1'
 end
 
 podspec :path => 'GCMAggregatingTableViewDataSource.podspec'

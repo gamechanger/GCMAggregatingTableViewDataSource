@@ -268,8 +268,8 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
   context(@"has two fully implemented data sources with multiple sections", ^{
     __block id<UITableViewDataSourceAndDelegate> childDataSourceA;
     __block id<UITableViewDataSourceAndDelegate> childDataSourceB;
-    __block NSObject *childDataSourceObjA;
-    __block NSObject *childDataSourceObjB;
+    __block id childDataSourceObjA;
+    __block id childDataSourceObjB;
 
     
     beforeEach(^{
@@ -313,7 +313,7 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
     
     context(@"and one datasource with only required methods implemented", ^{
       __block id<UITableViewDataSourceAndDelegate> childDataSourceC;
-      __block NSObject *childDataSourceObjC;
+      __block id childDataSourceObjC;
       beforeEach(^{
         childDataSourceC = [[GCMinimalDataSource alloc] init];
         childDataSourceObjC = childDataSourceC;
