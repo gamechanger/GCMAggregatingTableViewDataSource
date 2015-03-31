@@ -310,7 +310,124 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
       });
     });
 
-    
+    context(@"and one datasource removed", ^{
+      beforeEach(^{
+        [aggregatingDataSource removeChildDataSource:childDataSourceB];
+      });
+      context(@"tableView:numberOfRowsInSection:", ^{
+        it(@"forwards to the first child", ^{
+          [[childDataSourceObjA should] receive:@selector(tableView:numberOfRowsInSection:)
+                                      andReturn:theValue(5)
+                                  withArguments:any(),theValue(1)];
+          [[theValue([aggregatingDataSource tableView:tableView
+                                numberOfRowsInSection:1]) should] equal:theValue(5)];
+        });
+        it(@"raises if an out of range section is provided", ^{
+          [[theBlock(^{
+            [aggregatingDataSource tableView:tableView numberOfRowsInSection:2];
+          }) should] raise];
+        });
+      });
+      context(@"tableView:cellForRowAtIndexPath:", ^{
+        it(@"forwards to the first child", ^{
+          UITableViewCell *cell = [UITableViewCell mock];
+          [[childDataSourceObjA should] receive:@selector(tableView:cellForRowAtIndexPath:)
+                                      andReturn:cell
+                                  withArguments:any(),[NSIndexPath indexPathForItem:2
+                                                                          inSection:1]];
+          [[[aggregatingDataSource tableView:tableView
+                       cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                 inSection:1]] should] equal:cell];
+        });
+        it(@"throws an exception if asked for a cell which is out of range", ^{
+          [[theBlock(^{
+            [aggregatingDataSource tableView:tableView
+                       cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                 inSection:2]];
+          }) should] raise];
+          });
+        });
+    });
+      
+    context(@"and one datasource inserted into the middle", ^{
+        __block id<UITableViewDataSourceAndDelegate> childDataSourceX;
+        __block id childDataSourceObjX;
+        beforeEach(^{
+            childDataSourceX = [[GCMinimalDataSource alloc] init];
+            childDataSourceObjX = childDataSourceX;
+            [aggregatingDataSource addChildDataSource:childDataSourceX afterDataSource: childDataSourceObjA];
+        });
+        it(@"does not respond to all-or-nothing selectors", ^{
+            [[aggregatingDataSource shouldNot] respondToSelector:@selector(tableView:heightForRowAtIndexPath:)];
+        });
+        context(@"tableView:numberOfRowsInSection:", ^{
+            it(@"forwards to the first child", ^{
+                [[childDataSourceObjA should] receive:@selector(tableView:numberOfRowsInSection:)
+                                            andReturn:theValue(5)
+                                        withArguments:any(),theValue(1)];
+                [[theValue([aggregatingDataSource tableView:tableView
+                                      numberOfRowsInSection:1]) should] equal:theValue(5)];
+            });
+            it(@"forwards calls to the second child", ^{
+                [[childDataSourceObjX should] receive:@selector(tableView:numberOfRowsInSection:)
+                                            andReturn:theValue(10)
+                                        withArguments:any(),theValue(0)];
+                [[theValue([aggregatingDataSource tableView:tableView
+                                      numberOfRowsInSection:2]) should] equal:theValue(10)];
+            });
+            it(@"forwards calls to the third child", ^{
+                [[childDataSourceObjB should] receive:@selector(tableView:numberOfRowsInSection:)
+                                            andReturn:theValue(5)
+                                        withArguments:any(),theValue(0)];
+                [[theValue([aggregatingDataSource tableView:tableView
+                                      numberOfRowsInSection:3]) should] equal:theValue(5)];
+            });
+            it(@"raises if an out of range section is provided", ^{
+                [[theBlock(^{
+                    [aggregatingDataSource tableView:tableView numberOfRowsInSection:6];
+                }) should] raise];
+            });
+        });
+        context(@"tableView:cellForRowAtIndexPath:", ^{
+            it(@"forwards to the first child", ^{
+                UITableViewCell *cell = [UITableViewCell mock];
+                [[childDataSourceObjA should] receive:@selector(tableView:cellForRowAtIndexPath:)
+                                            andReturn:cell
+                                        withArguments:any(),[NSIndexPath indexPathForItem:2
+                                                                                inSection:1]];
+                [[[aggregatingDataSource tableView:tableView
+                             cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                       inSection:1]] should] equal:cell];
+            });
+            it(@"forwards to the second child", ^{
+                UITableViewCell *cell = [UITableViewCell mock];
+                [[childDataSourceObjX should] receive:@selector(tableView:cellForRowAtIndexPath:)
+                                            andReturn:cell
+                                        withArguments:any(),[NSIndexPath indexPathForItem:2
+                                                                                inSection:0]];
+                [[[aggregatingDataSource tableView:tableView
+                             cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                       inSection:2]] should] equal:cell];
+            });
+            it(@"forwards to the third child", ^{
+                UITableViewCell *cell = [UITableViewCell mock];
+                [[childDataSourceObjB should] receive:@selector(tableView:cellForRowAtIndexPath:)
+                                            andReturn:cell
+                                        withArguments:any(),[NSIndexPath indexPathForItem:2
+                                                                                inSection:0]];
+                [[[aggregatingDataSource tableView:tableView
+                             cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                       inSection:3]] should] equal:cell];
+            });
+            it(@"throws an exception if asked for a cell which is out of range", ^{
+                [[theBlock(^{
+                    [aggregatingDataSource tableView:tableView
+                               cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                         inSection:6]];
+                }) should] raise];
+            });
+        });
+    });
     context(@"and one datasource with only required methods implemented", ^{
       __block id<UITableViewDataSourceAndDelegate> childDataSourceC;
       __block id childDataSourceObjC;

@@ -57,12 +57,22 @@ static NSString *const kGCTableViewMapIndexKey = @"indexKey";
   [self.childDataSources addObject:childDataSource];
 }
 
+- (void)addChildDataSource:(id<UITableViewDataSource>)childDataSource afterDataSource:(id<UITableViewDataSource>)precedingDataSource{
+  NSInteger index = [self.childDataSources indexOfObject:precedingDataSource];
+  NSAssert(index != NSNotFound, @"precedingDataSource object not found in AggregatingDataSource");
+  [self.childDataSources insertObject:childDataSource atIndex:index + 1];
+}
+
+- (void)removeChildDataSource:(id<UITableViewDataSource>)childDataSource {
+  [self.childDataSources removeObject:childDataSource];
+}
+
 #pragma mark child datasource offset helpers
 
 // TODO: Can other offset helper methods use this on this?
 - (void)withDataSourcesForTableView:(UITableView *)tableView
-                     performBlock:(void (^)(UITableView *wrappedTableView,
-                                          id<UITableViewDataSource> childDataSource))block {
+                       performBlock:(void (^)(UITableView *wrappedTableView,
+                                              id<UITableViewDataSource> childDataSource))block {
   NSInteger offset = 0;
   for (id<UITableViewDataSource> childDataSource in self.childDataSources) {
     block([self wrapTableView:tableView forOffset:offset], childDataSource);
@@ -109,11 +119,11 @@ static NSString *const kGCTableViewMapIndexKey = @"indexKey";
                              performBlock:^id(UITableView *wrappedTableView,
                                               id<UITableViewDataSource> childDataSource,
                                               NSInteger relativeSection) {
-    return block(wrappedTableView,
-                 childDataSource,
-                 [NSIndexPath indexPathForItem:indexPath.
-                  item inSection:relativeSection]);
-  }];
+                               return block(wrappedTableView,
+                                            childDataSource,
+                                            [NSIndexPath indexPathForItem:indexPath.
+                                             item inSection:relativeSection]);
+                             }];
 }
 
 #pragma mark selector response handling
@@ -148,7 +158,7 @@ static NSString *const kGCTableViewMapIndexKey = @"indexKey";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   return [self withDataSourceForTableView:tableView
-                                  indexPath:indexPath
+                                indexPath:indexPath
                              performBlock:^id(UITableView *wrappedTableView,
                                               id<UITableViewDataSource> childDataSource,
                                               NSIndexPath *relativeIndexPath) {
