@@ -58,16 +58,13 @@ static NSString *const kGCTableViewMapIndexKey = @"indexKey";
 }
 
 - (void)addChildDataSource:(id<UITableViewDataSource>)childDataSource afterDataSource:(id<UITableViewDataSource>)precedingDataSource{
-  if ([self.childDataSources containsObject:precedingDataSource]) {
-    NSInteger index = [self.childDataSources indexOfObject:precedingDataSource];
-    [self.childDataSources insertObject:childDataSource atIndex:index + 1];
-  }
+  NSInteger index = [self.childDataSources indexOfObject:precedingDataSource];
+  NSAssert(index != NSNotFound, @"precedingDataSource object not found in AggregatingDataSource");
+  [self.childDataSources insertObject:childDataSource atIndex:index + 1];
 }
 
 - (void)removeChildDataSource:(id<UITableViewDataSource>)childDataSource {
-  if ([self.childDataSources containsObject:childDataSource]) {
-    [self.childDataSources removeObject:childDataSource];
-  }
+  [self.childDataSources removeObject:childDataSource];
 }
 
 #pragma mark child datasource offset helpers

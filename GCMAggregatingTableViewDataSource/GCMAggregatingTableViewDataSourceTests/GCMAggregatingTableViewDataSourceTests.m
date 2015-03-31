@@ -310,6 +310,45 @@ describe(@"GCMAggregatingTableViewDataSource", ^{
       });
     });
 
+    context(@"and one datasource removed", ^{
+      beforeEach(^{
+        [aggregatingDataSource removeChildDataSource:childDataSourceB];
+      });
+      context(@"tableView:numberOfRowsInSection:", ^{
+        it(@"forwards to the first child", ^{
+          [[childDataSourceObjA should] receive:@selector(tableView:numberOfRowsInSection:)
+                                      andReturn:theValue(5)
+                                  withArguments:any(),theValue(1)];
+          [[theValue([aggregatingDataSource tableView:tableView
+                                numberOfRowsInSection:1]) should] equal:theValue(5)];
+        });
+        it(@"raises if an out of range section is provided", ^{
+          [[theBlock(^{
+            [aggregatingDataSource tableView:tableView numberOfRowsInSection:2];
+          }) should] raise];
+        });
+      });
+      context(@"tableView:cellForRowAtIndexPath:", ^{
+        it(@"forwards to the first child", ^{
+          UITableViewCell *cell = [UITableViewCell mock];
+          [[childDataSourceObjA should] receive:@selector(tableView:cellForRowAtIndexPath:)
+                                      andReturn:cell
+                                  withArguments:any(),[NSIndexPath indexPathForItem:2
+                                                                          inSection:1]];
+          [[[aggregatingDataSource tableView:tableView
+                       cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                 inSection:1]] should] equal:cell];
+        });
+        it(@"throws an exception if asked for a cell which is out of range", ^{
+          [[theBlock(^{
+            [aggregatingDataSource tableView:tableView
+                       cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2
+                                                                 inSection:2]];
+          }) should] raise];
+          });
+        });
+    });
+      
     context(@"and one datasource inserted into the middle", ^{
         __block id<UITableViewDataSourceAndDelegate> childDataSourceX;
         __block id childDataSourceObjX;
