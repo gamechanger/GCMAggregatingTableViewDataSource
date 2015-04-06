@@ -129,12 +129,23 @@ static NSString *const kGCTableViewMapIndexKey = @"indexKey";
 #pragma mark selector response handling
 
 - (BOOL)allChildrenRespondToSelector:(SEL)aSelector {
+  BOOL allChildrenRespond = YES;
+  BOOL someChildrenRespond = NO;
+  
   for (id<UITableViewDelegate> childDelegate in self.childDataSources) {
     if (![childDelegate respondsToSelector:aSelector]) {
-      return NO;
+      allChildrenRespond = NO;
+    }
+    else {
+      someChildrenRespond = YES;
     }
   }
-  return YES;
+  
+  if (someChildrenRespond && !allChildrenRespond) {
+    NSLog(@"Warning: not all childDataSources implement %@ so it will be ignored.", NSStringFromSelector(aSelector));
+  }
+  
+  return allChildrenRespond;
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
